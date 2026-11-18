@@ -1,0 +1,11 @@
+const express = require('express');
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use('/api/patients', require('./routes/patientRoutes'));
+app.use('/api/doctors', require('./routes/doctorRoutes'));
+app.use('/api/appointments', require('./routes/appointmentRoutes'));
+app.use('/feedback', require('./routes/feedbackRoutes'));
+app.get('/', (req, res) => res.send('MediBook API is running!'));
+app.use(require('./middleware/errorHandler'));
+module.exports = app;

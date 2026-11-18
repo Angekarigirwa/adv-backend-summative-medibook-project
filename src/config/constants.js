@@ -1,0 +1,4 @@
+module.exports = {
+  DAILY_CAP: 12, WORK_START_MIN: 9 * 60, WORK_END_MIN: 17 * 60,
+  SLOT_MINUTES: 30, REFUND: { FULL_HOURS: 48, HALF_HOURS: 24 },
+};

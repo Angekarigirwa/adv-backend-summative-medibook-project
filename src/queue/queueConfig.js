@@ -1,5 +1,14 @@
 const Queue = require('bull');
-const redis = require('../config/redis');
-const waitlistQueue = new Queue('waitlist', { createClient: () => redis });
-const notificationQueue = new Queue('notifications', { createClient: () => redis });
+require('dotenv').config();
+
+const redisOpts = {
+  host: process.env.REDIS_HOST,
+  port: process.env.REDIS_PORT,
+  maxRetriesPerRequest: null,
+  enableReadyCheck: false,
+};
+
+const waitlistQueue = new Queue('waitlist', { redis: redisOpts });
+const notificationQueue = new Queue('notifications', { redis: redisOpts });
+
 module.exports = { waitlistQueue, notificationQueue };
